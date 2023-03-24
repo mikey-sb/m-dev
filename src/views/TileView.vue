@@ -5,19 +5,17 @@
 
 </h1>
 
-<i id="icon" class="fa-solid fa-chess centered"></i>
-<div class="shiny-grid-cmp">
-</div>
+<CursorComponent color="rgba(255,255,255,0.4)"/>
 </template>
   
 <script lang="ts">
-    import ShinyGridComponent from "@/components/ShinyGridComponent.vue";
+    import CursorComponent from "@/components/CursorComponent.vue"; // @ is an alias to /src
     import { Options, Vue } from "vue-class-component";
     import anime from 'animejs';
 
     @Options({
         components: {
-            ShinyGridComponent
+          CursorComponent
         },
         props: {
             msg: String,
@@ -28,6 +26,7 @@
 
         mounted(){ 
             const wrapper = document.getElementById("tiles");
+            document.body.classList.remove("toggled");
 
 let columns = 0,
     rows = 0,
@@ -124,10 +123,16 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0px;
+  .cursor{
+    opacity:0;
+  }
 }
 
 body.toggled {
   animation: none;
+  .cursor{
+    opacity:1;
+  }
 }
 
 body.toggled > #title {
@@ -153,7 +158,7 @@ body.toggled > #tiles > .tile:hover {
   height: calc(100vh - 1px);
   width: calc(100vw - 1px);
   position: relative;
-  z-index: 1;
+  z-index: 5;
   
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
@@ -161,7 +166,7 @@ body.toggled > #tiles > .tile:hover {
 }
 
 .tile {
-  cursor: pointer;
+  cursor: none;
   position: relative;
 }
 

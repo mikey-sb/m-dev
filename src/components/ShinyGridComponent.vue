@@ -7,7 +7,7 @@
 
                 </div>
                 <div class="card-text">
-                    <p>#</p>
+                    <h1 class="card-text-h1">#</h1>
                 </div>
                
                 <a href="/#/tile" class="link"></a>
@@ -16,7 +16,7 @@
                 <div class="card-border"></div>
                 <div class="card-content"></div>
                 <div class="card-text">
-                    <p>~</p>
+                    <h1 class="card-text-h1">~</h1>
                 </div>
                
                 <a href="/#/tile" class="link"></a>
@@ -25,7 +25,7 @@
                 <div class="card-border"></div>
                 <div class="card-content"></div>
                 <div class="card-text">
-                    <p>#</p>
+                    <h1 class="card-text-h1">#</h1>
                 </div>
                
                 <a href="/#/tile" class="link"></a>
@@ -34,7 +34,7 @@
                 <div class="card-border"></div>
                 <div class="card-content"></div>
                 <div class="card-text">
-                    <p>~</p>
+                    <h1 class="card-text-h1">~</h1>
                 </div>
                
                 <a href="/#/tile" class="link"></a>
@@ -43,7 +43,7 @@
                 <div class="card-border"></div>
                 <div class="card-content"></div>
                 <div class="card-text">
-                    <p>#</p>
+                    <h1 class="card-text-h1">#</h1>
                 </div>
                
                 <a href="/#/tile" class="link"></a>
@@ -52,7 +52,7 @@
                 <div class="card-border"></div>
                 <div class="card-content"></div>
                 <div class="card-text">
-                    <p>~</p>
+                    <h1 class="card-text-h1">~</h1>
                 </div>
                
                 <a href="/#/tile" class="link"></a>
@@ -74,6 +74,10 @@
         msg!: string;
 
         mounted(){
+            document.addEventListener("DOMContentLoaded", () => {
+                document.body.classList.remove("toggled");
+
+            })
 
             
             const handleOnMouseMove = (e: Event)  => {
@@ -87,8 +91,6 @@
 
                 target.style.setProperty("--mouse-x", `${x}px`);
                 target.style.setProperty("--mouse-y", `${y}px`);
-
-                console.log(x, y)
             }
 
             for(const card of document.querySelectorAll(".card")){
@@ -111,11 +113,10 @@
                         carde.style.setProperty("--mouse-x", `${x}px`);
                         carde.style.setProperty("--mouse-y", `${y}px`);
                     }
+
                 })
             }
-
         }
-        
     }
 </script>
 
@@ -126,10 +127,30 @@
     --card-color: rgb(23, 23, 23);
 }
 
-p{
+h1{
+   
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(235,235,235,0.4);
-    transition: color 0.3s ease-in-out;
+    font-size: 2em;
+    // color: rgb(235,235,235,0.4);
+    // transition: color 0.3s ease-in-out;
+
+}
+
+.card-text-h1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(
+        1000px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 255, 255, 0.4), 
+        transparent 40%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+
 }
 
 .grid-container{
@@ -142,6 +163,7 @@ p{
     margin: 0px;
     overflow: hidden;
     padding: 0px;
+    
 }
 
 #cards{
@@ -235,8 +257,8 @@ p{
     
 }
 
-.card:hover p {
-    color: rgb(235,235,235,0.9);
+.card:hover h1 {
+    // color: rgb(235,235,235,0.9);
 }
 
 </style>
